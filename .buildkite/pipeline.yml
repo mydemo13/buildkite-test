@@ -1,4 +1,4 @@
 steps:
 - label: ":docker:"
-  command: ./src/show_environment.sh
-  - "docker build . -t shellinabox-buildkite:latest"
+  command:
+    - "docker build . -t shellinabox-buildkite:latest"
