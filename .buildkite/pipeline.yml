@@ -5,7 +5,7 @@ steps:
   key: "build"
 - label: "Twistlock Scan"
   command:
-    - "twistcli images scan -u $${USERNAME} -p $${PASSWORD} --address $${CONSOLE} shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+    - "twistcli images scan -u $${USERNAME} -p $${PASSWORD} --address $${CONSOLE} $${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
   key: "scan"
   depends_on: "build"
 - label: "Push Image"
