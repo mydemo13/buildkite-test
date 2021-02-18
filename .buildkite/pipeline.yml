@@ -2,4 +2,9 @@ steps:
 - label: ":docker:"
   command:
     - "docker build . -t shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+  key: "build"
+- label: "Twistlock Scan"
+  command:
     - "twistcli images scan -u $${USERNAME} -p $${PASSWORD} --address ${CONSOLE} shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+  key: "scan"
+  depends_on: "build"
