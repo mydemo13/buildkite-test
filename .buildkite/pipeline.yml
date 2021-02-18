@@ -1,4 +1,4 @@
 steps:
 - label: ":docker:"
   command:
-    - "docker build . -t shellinabox-buildkite:latest"
+    - "docker build . -t shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
