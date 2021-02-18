@@ -1,16 +1,16 @@
 steps:
 - label: ":docker:"
   command:
-    - "docker build . -t ${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+    - "docker build . -t $${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
   key: "build"
 - label: "Twistlock Scan"
   command:
-    - "twistcli images scan -u $${USERNAME} -p $${PASSWORD} --address ${CONSOLE} shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+    - "twistcli images scan -u $${USERNAME} -p $${PASSWORD} --address $${CONSOLE} shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
   key: "scan"
   depends_on: "build"
 - label: "Push Image"
   command:
-    - "docker push ${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+    - "docker push $${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
   key: "push"
   depends_on:
     - step: "build"
@@ -18,7 +18,7 @@ steps:
       allow_failure: false
 - label: "Delete Image"
   command:
-    - "docker image rm ${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+    - "docker image rm $${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
   key: "delete"
   depends_on:
     - step: "build"
