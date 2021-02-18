@@ -2,3 +2,4 @@ steps:
 - label: ":docker:"
   command:
     - "docker build . -t shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
+    - "twistcli images scan -u ${USERNAME} -p ${PASSWORD} shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
