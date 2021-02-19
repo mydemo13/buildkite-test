@@ -1,5 +1,5 @@
 steps:
-- label: ":docker:"
+- label: ":docker: Build Image"
   command:
     - "docker build . -t $${REGISTRY}/shellinabox-buildkite:${BUILDKITE_BUILD_NUMBER}"
   key: "build"
